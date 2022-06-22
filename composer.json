@@ -1,5 +1,5 @@
 {
-    "name": "thomasvargiu/laminas-twb-bundle",
+    "name": "totally-tech/laminas-twb-bundle",
     "type": "library",
     "description": "Laminas module for easy integration of Twitter Bootstrap",
     "keywords": [
@@ -7,7 +7,7 @@
         "Twitter Bootstrap",
         "module"
     ],
-    "homepage": "http://github.com/thomasvargiu/laminas-twb-bundle",
+    "homepage": "http://github.com/totally-tech/laminas-twb-bundle",
     "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
@@ -18,12 +18,12 @@
         },
         {
             "name": "Thomas Vargiu",
-            "homepage": "https://github.com/thomasvargiu",
+            "homepage": "https://github.com/totally-tech",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/thomasvargiu/laminas-twb-bundle/issues"
+        "issues": "https://github.com/totally-tech/laminas-twb-bundle/issues"
     },
     "suggest": {
         "neilime/zf2-assets-bundle": "Bundling & caching Twitter Bootstrap assets",
@@ -31,7 +31,7 @@
     },
     "require": {
         "php": "^7.2 || ^8.0",
-        "laminas/laminas-form": "^2.3",
+        "laminas/laminas-form": "^2.3 || ^3.0",
         "laminas/laminas-i18n": "^2.3",
         "laminas/laminas-modulemanager": "^2.3",
         "laminas/laminas-mvc": "^2.3 || ^3.0",
