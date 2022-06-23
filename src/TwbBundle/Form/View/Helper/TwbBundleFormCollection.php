@@ -31,7 +31,7 @@ class TwbBundleFormCollection extends FormCollection
      * @param \Laminas\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement)
+    public function render(ElementInterface $oElement): string
     {
         $oRenderer = $this->getView();
         if (!method_exists($oRenderer, 'plugin')) {
