@@ -108,7 +108,7 @@ class TwbBundleFormCollection extends FormCollection
      * @param CollectionElement $collection
      * @return string
      */
-    public function renderTemplate(CollectionElement $collection)
+    public function renderTemplate(CollectionElement $collection): string
     {
         if (false != ($sElementLayout = $collection->getOption('twb-layout'))) {
             $elementOrFieldset = $collection->getTemplateElement();

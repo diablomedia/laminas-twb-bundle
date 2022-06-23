@@ -75,7 +75,7 @@ class TwbBundleFormRadio extends FormRadio
         array $aOptions,
         array $aSelectedOptions,
         array $aAttributes
-    ) {
+    ): string {
         $iIterator = 0;
         $aGlobalLabelAttributes = $oElement->getLabelAttributes()? : $this->labelAttributes;
         $sMarkup = '';

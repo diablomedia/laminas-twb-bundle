@@ -179,7 +179,7 @@ class TwbBundleForm extends Form
      * @param null|FormInterface $form
      * @return string
      */
-    public function openTag(FormInterface $form = null)
+    public function openTag(FormInterface $form = null): string
     {
         $this->setFormClass($form, $this->formLayout);
         return parent::openTag($form);
