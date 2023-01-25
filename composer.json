@@ -56,7 +56,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.1.x-dev"
+            "dev-php81": "4.1.x-dev"
         },
         "laminas": {
             "module": "TwbBundle",
