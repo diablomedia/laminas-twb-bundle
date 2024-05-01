@@ -1,6 +1,6 @@
 # TwbBundle - Laminas module
 
-[![License](https://img.shields.io/github/license/diablomedia/laminas-twb-bundle)](https://github.com/diablomedia/laminas-twb-bundle/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/diablomedia/laminas-twb-bundle)](https://github.com/diablomedia/laminas-twb-bundle/blob/main/LICENSE)
 [![Build](https://github.com/diablomedia/laminas-twb-bundle/actions/workflows/build.yml/badge.svg)](https://github.com/diablomedia/laminas-twb-bundle/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/diablomedia/laminas-twb-bundle/graph/badge.svg?token=CS39OiPjNi)](https://codecov.io/gh/diablomedia/laminas-twb-bundle)
 [![Latest Stable Version](https://poser.pugx.org/diablomedia/laminas-twb-bundle/v/stable.png)](https://packagist.org/packages/diablomedia/laminas-twb-bundle)
@@ -12,7 +12,7 @@ Fork of (neilime/zf2-twb-bundle)[https://github.com/neilime/zf2-twb-bundle] upda
 
 # Contributing
 
-👍 If you wish to contribute to TwbsHelper, PRs are welcome! Please read the [https://github.com/diablomedia/laminas-twb-bundle/blob/master/CONTRIBUTING.md](CONTRIBUTING.md) file.
+👍 If you wish to contribute to TwbsHelper, PRs are welcome! Please read the [https://github.com/diablomedia/laminas-twb-bundle/blob/main/CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 # Documentation
 
