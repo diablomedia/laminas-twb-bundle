@@ -30,7 +30,7 @@
         "twitter/bootstrap": "Twitter bootstrap assets"
     },
     "require": {
-        "php": "~8.0 || ~8.1 || ~8.2 || ~8.3",
+        "php": "~8.1 || ~8.2 || ~8.3",
         "laminas/laminas-form": "^3.0",
         "laminas/laminas-i18n": "^2.3",
         "laminas/laminas-modulemanager": "^2.3",
@@ -47,7 +47,7 @@
         "maglnet/composer-require-checker": "^3.0.0",
         "phpro/grumphp-shim": "^2.0.0",
         "phpstan/phpstan": "1.10.67",
-        "phpunit/phpunit": "^9.6.19 || ^10.5.18"
+        "phpunit/phpunit": "^10.5.18"
     },
     "autoload": {
         "psr-4": {
