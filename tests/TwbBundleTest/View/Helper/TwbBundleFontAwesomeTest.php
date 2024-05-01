@@ -15,19 +15,22 @@ class TwbBundleFontAwesomeTest extends \PHPUnit\Framework\TestCase
     /**
      * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp(): void {
+    public function setUp(): void
+    {
         $oViewHelperPluginManager = Bootstrap::getServiceManager()
             ->get('ViewHelperManager');
-        $oRenderer = new PhpRenderer();
+        $oRenderer               = new PhpRenderer();
         $this->fontAwesomeHelper = $oViewHelperPluginManager->get('fontAwesome')
             ->setView(
                 $oRenderer->setHelperPluginManager($oViewHelperPluginManager)
             );
     }
 
-    public function testInvoke() {
+    public function testInvoke()
+    {
         $this->assertSame(
-            $this->fontAwesomeHelper, $this->fontAwesomeHelper->__invoke()
+            $this->fontAwesomeHelper,
+            $this->fontAwesomeHelper->__invoke()
         );
     }
 
@@ -37,17 +40,19 @@ class TwbBundleFontAwesomeTest extends \PHPUnit\Framework\TestCase
         $this->fontAwesomeHelper->render(new \stdClass());
     }
 
-    public function testRenderWithEmptyClassAttributes() {
+    public function testRenderWithEmptyClassAttributes()
+    {
         $this->assertEquals(
             '<span class="fa&#x20;fa-test"></span>',
-            $this->fontAwesomeHelper->render('test', array('class' => ''))
+            $this->fontAwesomeHelper->render('test', ['class' => ''])
         );
     }
 
-    public function testRenderWithDefinedClassAttributes() {
+    public function testRenderWithDefinedClassAttributes()
+    {
         $this->assertEquals(
             '<span class="test&#x20;fa&#x20;fa-test"></span>',
-            $this->fontAwesomeHelper->render('test', array('class' => 'test'))
+            $this->fontAwesomeHelper->render('test', ['class' => 'test'])
         );
     }
 }

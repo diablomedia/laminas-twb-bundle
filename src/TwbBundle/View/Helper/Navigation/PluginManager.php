@@ -2,7 +2,6 @@
 
 namespace TwbBundle\View\Helper\Navigation;
 
-
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 class PluginManager extends \Laminas\View\Helper\Navigation\PluginManager

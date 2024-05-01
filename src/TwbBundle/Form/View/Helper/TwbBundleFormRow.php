@@ -68,13 +68,13 @@ class TwbBundleFormRow extends FormRow
 
         // Partial rendering
         if ($this->partial) {
-            return $this->view->render($this->partial, array(
-                        'element' => $oElement,
-                        'label' => $this->renderLabel($oElement),
+            return $this->view->render($this->partial, [
+                        'element'         => $oElement,
+                        'label'           => $this->renderLabel($oElement),
                         'labelAttributes' => $this->labelAttributes,
-                        'labelPosition' => $sLabelPosition,
-                        'renderErrors' => $this->renderErrors,
-            ));
+                        'labelPosition'   => $sLabelPosition,
+                        'renderErrors'    => $this->renderErrors,
+            ]);
         }
 
         // "has-error" validation state case
@@ -98,8 +98,8 @@ class TwbBundleFormRow extends FormRow
         switch (true) {
             // Checkbox element not in horizontal form
             case $sElementType === 'checkbox' && $sLayout !== TwbBundleForm::LAYOUT_HORIZONTAL && !$oElement->getOption('form-group'):
-            // All "button" elements in inline form
-            case in_array($sElementType, array('submit', 'button', 'reset'), true) && $sLayout === TwbBundleForm::LAYOUT_INLINE:
+                // All "button" elements in inline form
+            case in_array($sElementType, ['submit', 'button', 'reset'], true) && $sLayout === TwbBundleForm::LAYOUT_INLINE:
                 return $sElementContent . "\n";
             default:
                 // Render element into form group
@@ -125,15 +125,15 @@ class TwbBundleFormRow extends FormRow
         if ($oElement->getMessages()) {
             $sRowClass .= ' has-error';
         }
-        if( $oElement->getOption('feedback')) {
+        if($oElement->getOption('feedback')) {
             $sRowClass .= ' has-feedback';
         }
 
         // Column size
         if (($sColumSize = $oElement->getOption('column-size')) && $oElement->getOption('twb-layout') !== TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
-            $sColumSize = (is_array($sColumSize)) ? $sColumSize : array($sColumSize);
-            $sRowClass .= implode('', array_map(function($item) { return ' col-' . $item; }, $sColumSize));
+            $sColumSize = (is_array($sColumSize)) ? $sColumSize : [$sColumSize];
+            $sRowClass .= implode('', array_map(function ($item) { return ' col-' . $item; }, $sColumSize));
         }
 
         //Additional row class
@@ -151,7 +151,7 @@ class TwbBundleFormRow extends FormRow
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function renderElementFormGroup($sElementContent, $sRowClass, $sFeedbackElement = '' )
+    public function renderElementFormGroup($sElementContent, $sRowClass, $sFeedbackElement = '')
     {
         if (!is_string($sElementContent)) {
             throw new \InvalidArgumentException('Argument "$sElementContent" expects a string, "' . (is_object($sElementContent) ? get_class($sElementContent) : gettype($sElementContent)) . '" given');
@@ -162,7 +162,7 @@ class TwbBundleFormRow extends FormRow
         if ($sFeedbackElement && !is_string($sFeedbackElement)) {
             throw new \InvalidArgumentException('Argument "$sFeedbackElement" expects a string, "' . (is_object($sFeedbackElement) ? get_class($sFeedbackElement) : gettype($sFeedbackElement)) . '" given');
         }
-        if( $sFeedbackElement ){
+        if($sFeedbackElement) {
             $sElementContent .= '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
         }
         return sprintf(static::$formGroupFormat, $sRowClass, $sElementContent) . "\n";
@@ -209,7 +209,7 @@ class TwbBundleFormRow extends FormRow
             $sElementType = $oElement->getAttribute('type');
 
             //Button element is a special case, because label is always rendered inside it
-            if (($oElement instanceof Button) or ( $oElement instanceof Submit)) {
+            if (($oElement instanceof Button) or ($oElement instanceof Submit)) {
                 $sLabelContent = '';
             } else {
                 $aLabelAttributes = $oElement->getLabelAttributes() ? : $this->labelAttributes;
@@ -254,7 +254,7 @@ class TwbBundleFormRow extends FormRow
                     $oElement->setLabelAttributes($aLabelAttributes);
                 }
 
-                $sLabelOpen = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
+                $sLabelOpen  = $oLabelHelper->openTag($oElement->getAttribute('id') ? $oElement : $aLabelAttributes);
                 $sLabelClose = $oLabelHelper->closeTag();
 
                 // Allow label html escape desable
@@ -319,18 +319,24 @@ class TwbBundleFormRow extends FormRow
                 // Checkbox elements are a special case, element is rendered into label
                 if ($sElementType === 'checkbox') {
                     return sprintf(
-                            static::$horizontalLayoutFormat, $sClass, sprintf(static::$checkboxFormat, $sElementContent)
+                        static::$horizontalLayoutFormat,
+                        $sClass,
+                        sprintf(static::$checkboxFormat, $sElementContent)
                     );
                 }
 
                 if ($sLabelPosition === self::LABEL_PREPEND) {
                     return $sLabelOpen . $sLabelContent . $sLabelClose . sprintf(
-                                    static::$horizontalLayoutFormat, $sClass, $sElementContent
+                        static::$horizontalLayoutFormat,
+                        $sClass,
+                        $sElementContent
                     );
                 } else {
                     return sprintf(
-                                    static::$horizontalLayoutFormat, $sClass, $sElementContent
-                            ) . $sLabelOpen . $sLabelContent . $sLabelClose;
+                        static::$horizontalLayoutFormat,
+                        $sClass,
+                        $sElementContent
+                    ) . $sLabelOpen . $sLabelContent . $sLabelClose;
                 }
         }
         throw new DomainException('Layout "' . $sLayout . '" is not valid');

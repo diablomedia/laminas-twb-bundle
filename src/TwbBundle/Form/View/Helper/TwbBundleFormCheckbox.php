@@ -45,23 +45,23 @@ class TwbBundleFormCheckbox extends FormCheckbox
             ));
         }
 
-        $aAttributes = $oElement->getAttributes();
-        $aAttributes['name'] = $sName;
-        $aAttributes['type'] = $this->getInputType();
+        $aAttributes          = $oElement->getAttributes();
+        $aAttributes['name']  = $sName;
+        $aAttributes['type']  = $this->getInputType();
         $aAttributes['value'] = $oElement->getCheckedValue();
-        $sClosingBracket = $this->getInlineClosingBracket();
+        $sClosingBracket      = $this->getInlineClosingBracket();
 
         if ($oElement->isChecked()) {
             $aAttributes['checked'] = 'checked';
         }
 
         // Render label
-        $sLabelOpen = $sLabelClose = '';
+        $sLabelOpen    = $sLabelClose = '';
         $sLabelContent = $this->getLabelContent($oElement);
         if($sLabelContent) {
             $oLabelHelper = $this->getLabelHelper();
-            $sLabelOpen = $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
-            $sLabelClose = $oLabelHelper->closeTag();
+            $sLabelOpen   = $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
+            $sLabelClose  = $oLabelHelper->closeTag();
         }
 
         // Render checkbox
@@ -84,10 +84,10 @@ class TwbBundleFormCheckbox extends FormCheckbox
         if ($oElement->useHiddenElement()) {
             $sElementContent = sprintf(
                 '<input type="hidden" %s%s',
-                $this->createAttributesString(array(
-                    'name' => $aAttributes['name'],
+                $this->createAttributesString([
+                    'name'  => $aAttributes['name'],
                     'value' => $oElement->getUncheckedValue(),
-                )),
+                ]),
                 $sClosingBracket
             ) . $sElementContent;
         }
@@ -98,7 +98,8 @@ class TwbBundleFormCheckbox extends FormCheckbox
      * @param ElementInterface $oElement
      * @return string
      */
-    public function getLabelContent(ElementInterface $oElement){
+    public function getLabelContent(ElementInterface $oElement)
+    {
         $sLabelContent = $oElement->getLabel() ? : '';
         if ($sLabelContent) {
             if ($oTranslator = $this->getTranslator()) {

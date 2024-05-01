@@ -2,7 +2,8 @@
 
 namespace TwbBundleTest\View\Helper;
 
-class TwbBundleGlyphiconTest extends \PHPUnit\Framework\TestCase {
+class TwbBundleGlyphiconTest extends \PHPUnit\Framework\TestCase
+{
 
     /**
      * @var \TwbBundle\View\Helper\TwbBundleGlyphicon
@@ -12,13 +13,15 @@ class TwbBundleGlyphiconTest extends \PHPUnit\Framework\TestCase {
     /**
      * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp(): void {
+    public function setUp(): void
+    {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
-        $this->glyphiconHelper = $oViewHelperPluginManager->get('glyphicon')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+        $oRenderer                = new \Laminas\View\Renderer\PhpRenderer();
+        $this->glyphiconHelper    = $oViewHelperPluginManager->get('glyphicon')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
-    public function testInvoke() {
+    public function testInvoke()
+    {
         $this->assertSame($this->glyphiconHelper, $this->glyphiconHelper->__invoke());
     }
 
@@ -28,12 +31,14 @@ class TwbBundleGlyphiconTest extends \PHPUnit\Framework\TestCase {
         $this->glyphiconHelper->render(new \stdClass());
     }
 
-    public function testRenderWithEmptyClassAttributes() {
-        $this->assertEquals('<span class="glyphicon&#x20;glyphicon-test"></span>', $this->glyphiconHelper->render('test', array('class' => '')));
+    public function testRenderWithEmptyClassAttributes()
+    {
+        $this->assertEquals('<span class="glyphicon&#x20;glyphicon-test"></span>', $this->glyphiconHelper->render('test', ['class' => '']));
     }
 
-    public function testRenderWithDefinedClassAttributes() {
-        $this->assertEquals('<span class="test&#x20;glyphicon&#x20;glyphicon-test"></span>', $this->glyphiconHelper->render('test', array('class' => 'test')));
+    public function testRenderWithDefinedClassAttributes()
+    {
+        $this->assertEquals('<span class="test&#x20;glyphicon&#x20;glyphicon-test"></span>', $this->glyphiconHelper->render('test', ['class' => 'test']));
     }
 
 }

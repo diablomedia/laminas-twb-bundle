@@ -1,5 +1,5 @@
 {
-    "name": "totally-tech/laminas-twb-bundle",
+    "name": "diablomedia/laminas-twb-bundle",
     "type": "library",
     "description": "Laminas module for easy integration of Twitter Bootstrap",
     "keywords": [
@@ -7,7 +7,7 @@
         "Twitter Bootstrap",
         "module"
     ],
-    "homepage": "http://github.com/totally-tech/laminas-twb-bundle",
+    "homepage": "http://github.com/diablomedia/laminas-twb-bundle",
     "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
@@ -23,15 +23,15 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/totally-tech/laminas-twb-bundle/issues"
+        "issues": "https://github.com/diablomedia/laminas-twb-bundle/issues"
     },
     "suggest": {
         "neilime/zf2-assets-bundle": "Bundling & caching Twitter Bootstrap assets",
         "twitter/bootstrap": "Twitter bootstrap assets"
     },
     "require": {
-        "php": "^7.2 || ^8.0",
-        "laminas/laminas-form": "^2.3 || ^3.0",
+        "php": "~8.1 || ~8.2 || ~8.3",
+        "laminas/laminas-form": "^3.0",
         "laminas/laminas-i18n": "^2.3",
         "laminas/laminas-modulemanager": "^2.3",
         "laminas/laminas-mvc": "^2.3 || ^3.0",
@@ -39,11 +39,15 @@
         "laminas/laminas-stdlib": "^2.3 || ^3.1",
         "laminas/laminas-view": "^2.3",
         "laminas/laminas-navigation": "^2.9",
-        "laminas/laminas-dependency-plugin": "^1.0 || ^2.0"
+        "psr/container": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5.13 || ^9.4",
-        "laminas/laminas-router": "^3.3"
+        "friendsofphp/php-cs-fixer": "3.54.0",
+        "laminas/laminas-router": "^3.3",
+        "maglnet/composer-require-checker": "^3.0.0",
+        "phpro/grumphp-shim": "^2.0.0",
+        "phpstan/phpstan": "1.10.67",
+        "phpunit/phpunit": "^10.5.18"
     },
     "autoload": {
         "psr-4": {
@@ -51,12 +55,14 @@
         }
     },
     "scripts": {
-        "test": "cd tests && phpunit --colors & cd ..",
-        "test:ci": "cd tests && phpunit && cd .."
+        "test": "phpunit",
+        "test-with-coverage": "phpunit --coverage-clover=clover.xml",
+        "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi",
+        "style-check": "php-cs-fixer fix --dry-run -vv"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-php81": "4.1.x-dev"
         },
         "laminas": {
             "module": "TwbBundle",
@@ -65,5 +71,10 @@
     },
     "replace": {
         "neilime/zf2-twb-bundle": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true
+        }
     }
 }

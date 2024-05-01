@@ -2,7 +2,8 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
+class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase
+{
 
     /**
      * Contains an instance of TwbBundleFormErrors.
@@ -10,7 +11,8 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
      */
     protected $formErrorsHelper = null;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         $this->getFormErrorsHelper();
     }
 
@@ -19,7 +21,8 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
      * @param \TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper
      * @return \TwbBundleTest\Form\View\Helper\TwbBundleFormErrorsTest
      */
-    public function setFormErrorsHelper(\TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper = null) {
+    public function setFormErrorsHelper(\TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper = null)
+    {
         $this->formErrorsHelper = $oFormErrorsHelper;
         return $this;
     }
@@ -28,10 +31,11 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
      * Gets or initialises the correct helper for this test.
      * @return \TwbBundle\Form\View\Helper\TwbBundleFormErrors
      */
-    public function getFormErrorsHelper() {
+    public function getFormErrorsHelper()
+    {
         if (null === $this->formErrorsHelper) {
             $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-            $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
+            $oRenderer                = new \Laminas\View\Renderer\PhpRenderer();
             $oRenderer->setResolver(\TwbBundleTest\Bootstrap::getServiceManager()->get('ViewResolver'));
             $helper = $oViewHelperPluginManager->get('formErrors')
                     ->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
@@ -42,14 +46,16 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
         return $this->formErrorsHelper;
     }
 
-    public function testInvokeWithoutFormReturnsObject() {
+    public function testInvokeWithoutFormReturnsObject()
+    {
         $oHelper = $this->getFormErrorsHelper();
         $this->assertInstanceOf('TwbBundle\Form\View\Helper\TwbBundleFormErrors', $oHelper());
     }
 
-    public function testInvokeWithFormCallsRender() {
+    public function testInvokeWithFormCallsRender()
+    {
         $form = $this->getMockBuilder('\Laminas\Form\Form')
-            ->setMethods(array('hasValidated', 'isValid'))
+            ->onlyMethods(['hasValidated', 'isValid'])
             ->disableOriginalConstructor()
             ->getMock();
         $form->expects($this->exactly(1))
@@ -62,7 +68,7 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
         $this->assertInstanceOf('\Laminas\Form\Form', $form);
 
         $helper = $this->getMockBuilder('TwbBundle\Form\View\Helper\TwbBundleFormErrors')
-            ->setMethods(array('render'))
+            ->onlyMethods(['render'])
             ->getMock();
         $helper->expects($this->atLeastOnce())
                 ->method('render')
@@ -74,9 +80,10 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals('return value', $helper($form));
     }
 
-    public function testInvokeWithFormNoErrorsReturnsNull() {
+    public function testInvokeWithFormNoErrorsReturnsNull()
+    {
         $form = $this->getMockBuilder('\Laminas\Form\Form')
-            ->setMethods(array('hasValidated', 'isValid'))
+            ->onlyMethods(['hasValidated', 'isValid'])
             ->disableOriginalConstructor()
             ->getMock();
         $form->expects($this->exactly(1))
@@ -94,7 +101,8 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
         $this->assertEquals(null, $helper($form));
     }
 
-    public function testCorrectHtmlMarkupBasedOnErrorMessagesArray() {
+    public function testCorrectHtmlMarkupBasedOnErrorMessagesArray()
+    {
         $helper = $this->getFormErrorsHelper();
 
         /**
@@ -102,23 +110,23 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
          */
         $this->assertInstanceOf('\TwbBundle\Form\View\Helper\TwbBundleFormErrors', $helper);
 
-        $messagesArray = array(
-            'firstName' => array(
+        $messagesArray = [
+            'firstName' => [
                 'isEmpty' => 'Value is required and can\'t be empty',
-            ),
-            'lastName' => array(
+            ],
+            'lastName' => [
                 'isEmpty' => 'Value is required and can\'t be empty',
-            ),
-            'category' => array(
+            ],
+            'category' => [
                 'isEmpty' => 'Value is required and can\'t be empty',
-            ),
-            'dob' => array(
+            ],
+            'dob' => [
                 'dateInvalidDate' => 'The input does not appear to be a valid date',
-            ),
-        );
+            ],
+        ];
 
         $element = $this->getMockBuilder('\Laminas\Form\Element')
-            ->setMethods(array('getAttribute', 'getLabel'))
+            ->onlyMethods(['getAttribute', 'getLabel'])
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -133,7 +141,7 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
         $this->assertInstanceOf('\Laminas\Form\Element', $element);
 
         $element2 = $this->getMockBuilder('\Laminas\Form\Element')
-            ->setMethods(array('getAttribute', 'getLabel'))
+            ->onlyMethods(['getAttribute', 'getLabel'])
             ->disableOriginalConstructor()
             ->getMock();
         $element2->expects($this->atLeastOnce())
@@ -146,15 +154,15 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertInstanceOf('\Laminas\Form\Element', $element2);
 
-        $map = array(
-            array('firstName', $element),
-            array('lastName', $element),
-            array('category', $element),
-            array('dob', $element2),
-        );
+        $map = [
+            ['firstName', $element],
+            ['lastName', $element],
+            ['category', $element],
+            ['dob', $element2],
+        ];
 
         $form = $this->getMockBuilder('\Laminas\Form\Form')
-            ->setMethods(array('getMessages', 'get'))
+            ->onlyMethods(['getMessages', 'get'])
             ->disableOriginalConstructor()
             ->getMock();
         $form->expects($this->exactly(1))

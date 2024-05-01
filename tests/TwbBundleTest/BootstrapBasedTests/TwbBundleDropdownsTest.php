@@ -24,10 +24,10 @@ class TwbBundleDropdownsTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-dropdowns' . DIRECTORY_SEPARATOR;
+        $this->expectedPath       = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-dropdowns' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
-        $this->dropdownHelper = $oViewHelperPluginManager->get('dropDown')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+        $oRenderer                = new \Laminas\View\Renderer\PhpRenderer();
+        $this->dropdownHelper     = $oViewHelperPluginManager->get('dropDown')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
     /**
@@ -35,13 +35,13 @@ class TwbBundleDropdownsTest extends \PHPUnit\Framework\TestCase
      */
     public function testExample()
     {
-        $aDropDownOptions = array(
-            'label' => 'Dropdown',
-            'name' => 'dropdownMenu1',
-            'attributes' => array('class' => 'clearfix'),
-            'list_attributes' => array('aria-labelledby' => 'dropdownMenu1'),
-            'items' => array('Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link')
-        );
+        $aDropDownOptions = [
+            'label'           => 'Dropdown',
+            'name'            => 'dropdownMenu1',
+            'attributes'      => ['class' => 'clearfix'],
+            'list_attributes' => ['aria-labelledby' => 'dropdownMenu1'],
+            'items'           => ['Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link']
+        ];
 
         //Test content
         $this->twbAssertStringEqualsFile($this->expectedPath . 'exemple.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
@@ -52,13 +52,13 @@ class TwbBundleDropdownsTest extends \PHPUnit\Framework\TestCase
      */
     public function testAlignment()
     {
-        $aDropDownOptions = array(
-            'label' => 'Dropdown',
-            'name' => 'dropdownMenu1',
-            'attributes' => array('class' => 'clearfix'),
-            'list_attributes' => array('aria-labelledby' => 'dropdownMenu1', 'class' => 'pull-right'),
-            'items' => array('Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link')
-        );
+        $aDropDownOptions = [
+            'label'           => 'Dropdown',
+            'name'            => 'dropdownMenu1',
+            'attributes'      => ['class' => 'clearfix'],
+            'list_attributes' => ['aria-labelledby' => 'dropdownMenu1', 'class' => 'pull-right'],
+            'items'           => ['Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link']
+        ];
 
         //Test content
         $this->twbAssertStringEqualsFile($this->expectedPath . 'alignment.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
@@ -69,19 +69,19 @@ class TwbBundleDropdownsTest extends \PHPUnit\Framework\TestCase
      */
     public function testHeaders()
     {
-        $aDropDownOptions = array(
-            'label' => 'Dropdown',
-            'name' => 'dropdownMenu1',
-            'attributes' => array('class' => 'clearfix'),
-            'list_attributes' => array('aria-labelledby' => 'dropdownMenu1'),
-            'items' => array(
-                array('type' => \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER, 'label' => 'Dropdown header'),
+        $aDropDownOptions = [
+            'label'           => 'Dropdown',
+            'name'            => 'dropdownMenu1',
+            'attributes'      => ['class' => 'clearfix'],
+            'list_attributes' => ['aria-labelledby' => 'dropdownMenu1'],
+            'items'           => [
+                ['type' => \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER, 'label' => 'Dropdown header'],
                 'Action', 'Another action', 'Something else here',
                 \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER,
-                array('type' => \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER, 'label' => 'Dropdown header'),
+                ['type' => \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_HEADER, 'label' => 'Dropdown header'],
                 'Separated link'
-            )
-        );
+            ]
+        ];
 
         //Test content
         $this->twbAssertStringEqualsFile($this->expectedPath . 'headers.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
@@ -92,17 +92,17 @@ class TwbBundleDropdownsTest extends \PHPUnit\Framework\TestCase
      */
     public function testDisabled()
     {
-        $aDropDownOptions = array(
-            'label' => 'Dropdown',
-            'name' => 'dropdownMenu1',
-            'attributes' => array('class' => 'clearfix'),
-            'list_attributes' => array('aria-labelledby' => 'dropdownMenu1'),
-            'items' => array(
+        $aDropDownOptions = [
+            'label'           => 'Dropdown',
+            'name'            => 'dropdownMenu1',
+            'attributes'      => ['class' => 'clearfix'],
+            'list_attributes' => ['aria-labelledby' => 'dropdownMenu1'],
+            'items'           => [
                 'Regular link',
-                'Disabled link' => array('attributes' => array('class' => 'disabled')),
+                'Disabled link' => ['attributes' => ['class' => 'disabled']],
                 'Another link'
-            )
-        );
+            ]
+        ];
 
         //Test content
         $this->twbAssertStringEqualsFile($this->expectedPath . 'disabled.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));

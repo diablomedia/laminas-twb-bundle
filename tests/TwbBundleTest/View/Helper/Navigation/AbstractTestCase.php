@@ -24,7 +24,7 @@ use Laminas\View\Renderer\PhpRenderer;
 /**
  * Base class for navigation view helper tests
  */
-abstract class AbstractTest extends TestCase
+abstract class AbstractTestCase extends TestCase
 {
     /**
      * @var ServiceManager
@@ -63,6 +63,8 @@ abstract class AbstractTest extends TestCase
     private $_oldControllerDir;
     // @codingStandardsIgnoreEnd
 
+    protected $routeMatchType;
+
     /**
      * Prepares the environment before running a test
      *
@@ -77,7 +79,7 @@ abstract class AbstractTest extends TestCase
 
         // read navigation config
         $this->_files = $cwd . '/_files';
-        $config = ConfigFactory::fromFile($this->_files . '/navigation.xml', true);
+        $config       = ConfigFactory::fromFile($this->_files . '/navigation.xml', true);
 
         // setup containers from config
         $this->_nav = new Navigation($config->get('nav_test1'));

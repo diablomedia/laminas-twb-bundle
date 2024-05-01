@@ -40,7 +40,7 @@ class TwbBundleGlyphicon extends AbstractHelper
         }
 
         if (empty($aGlyphiconAttributes)) {
-            $aGlyphiconAttributes = array('class' => 'glyphicon');
+            $aGlyphiconAttributes = ['class' => 'glyphicon'];
         } else {
 
             if (empty($aGlyphiconAttributes['class'])) {

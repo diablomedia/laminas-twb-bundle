@@ -8,7 +8,8 @@ use Laminas\Mvc\Service;
 error_reporting(E_ALL | E_STRICT);
 chdir(__DIR__);
 
-class Bootstrap {
+class Bootstrap
+{
 
     /**
      * @var \Laminas\ServiceManager\ServiceManager
@@ -23,10 +24,11 @@ class Bootstrap {
     /**
      * Initialize bootstrap
      */
-    public static function init() {
+    public static function init()
+    {
         //Load the user-defined test configuration file, if it exists;
-        $aTestConfig = include is_readable(__DIR__ . '/TestConfig.php') ? __DIR__ . '/TestConfig.php' : __DIR__ . '/TestConfig.php.dist';
-        $aZf2ModulePaths = array();
+        $aTestConfig     = include is_readable(__DIR__ . '/TestConfig.php') ? __DIR__ . '/TestConfig.php' : __DIR__ . '/TestConfig.php.dist';
+        $aZf2ModulePaths = [];
         if (isset($aTestConfig['module_listener_options']['module_paths'])) {
             foreach ($aTestConfig['module_listener_options']['module_paths'] as $sModulePath) {
                 if (($sPath = static::findParentPath($sModulePath))) {
@@ -37,17 +39,18 @@ class Bootstrap {
         static::initAutoloader();
 
         // Use ModuleManager to load this module and it's dependencies
-        static::$config = \Laminas\Stdlib\ArrayUtils::merge(array(
-                    'module_listener_options' => array(
+        static::$config = \Laminas\Stdlib\ArrayUtils::merge([
+                    'module_listener_options' => [
                         'module_paths' => array_merge(
-                                $aZf2ModulePaths, explode(PATH_SEPARATOR, (getenv('ZF2_MODULES_TEST_PATHS')? : (defined('ZF2_MODULES_TEST_PATHS') ? ZF2_MODULES_TEST_PATHS : '')))
+                            $aZf2ModulePaths,
+                            explode(PATH_SEPARATOR, (getenv('ZF2_MODULES_TEST_PATHS')? : (defined('ZF2_MODULES_TEST_PATHS') ? ZF2_MODULES_TEST_PATHS : '')))
                         )
-                    )
-                        ), $aTestConfig);
+                    ]
+                        ], $aTestConfig);
 
         $configuration = static::$config;
         // Prepare the service manager
-        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : array();
+        $smConfig = isset($configuration['service_manager']) ? $configuration['service_manager'] : [];
         $smConfig = new Service\ServiceManagerConfig($smConfig);
 
         $serviceManager = new ServiceManager();
@@ -63,14 +66,16 @@ class Bootstrap {
     /**
      * @return \Laminas\ServiceManager\ServiceManager
      */
-    public static function getServiceManager() {
+    public static function getServiceManager()
+    {
         return static::$serviceManager;
     }
 
     /**
      * @return array
      */
-    public static function getConfig() {
+    public static function getConfig()
+    {
         return static::$config;
     }
 
@@ -78,7 +83,8 @@ class Bootstrap {
      * Initialize Autoloader
      * @throws \RuntimeException
      */
-    protected static function initAutoloader() {
+    protected static function initAutoloader()
+    {
         $sVendorPath = static::findParentPath('vendor');
 
         if (is_readable($sVendorPath . '/autoload.php')) {
@@ -90,14 +96,14 @@ class Bootstrap {
             }
             include $sZf2Path . '/Zend/Loader/AutoloaderFactory.php';
         }
-        \Laminas\Loader\AutoloaderFactory::factory(array(
-            'Laminas\Loader\StandardAutoloader' => array(
+        \Laminas\Loader\AutoloaderFactory::factory([
+            'Laminas\Loader\StandardAutoloader' => [
                 'autoregister_zf' => true,
-                'namespaces' => array(
+                'namespaces'      => [
                     __NAMESPACE__ => __DIR__ . '/' . __NAMESPACE__,
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
     /**
@@ -105,8 +111,9 @@ class Bootstrap {
      * @param string $sPath
      * @return boolean|string
      */
-    protected static function findParentPath($sPath) {
-        $sCurrentDir = __DIR__;
+    protected static function findParentPath($sPath)
+    {
+        $sCurrentDir  = __DIR__;
         $sPreviousDir = '.';
         while (!is_dir($sPreviousDir . '/' . $sPath)) {
             $sCurrentDir = dirname($sCurrentDir);

@@ -48,7 +48,7 @@ class TwbBundleFontAwesome extends AbstractHelper
         }
 
         if (empty($aFontAwesomeAttributes)) {
-            $aFontAwesomeAttributes = array('class' => 'fa');
+            $aFontAwesomeAttributes = ['class' => 'fa'];
         } else {
 
             if (empty($aFontAwesomeAttributes['class'])) {

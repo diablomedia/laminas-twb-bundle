@@ -50,9 +50,9 @@ class TwbBundleAlert extends AbstractHelper
         }
 
         if (empty($aAlertAttributes)) {
-            $aAlertAttributes = array('class' => 'alert');
+            $aAlertAttributes = ['class' => 'alert'];
         } elseif (is_string($aAlertAttributes)) {
-            $aAlertAttributes = array('class' => $aAlertAttributes);
+            $aAlertAttributes = ['class' => $aAlertAttributes];
         } elseif (!is_array($aAlertAttributes)) {
             throw new InvalidArgumentException('Alert attributes expects a string or an array, "' . gettype($aAlertAttributes) . '" given');
         } elseif (empty($aAlertAttributes['class'])) {

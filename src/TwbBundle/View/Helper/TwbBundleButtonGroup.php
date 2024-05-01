@@ -7,6 +7,7 @@ use LogicException;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Factory;
+use TwbBundle\Form\View\Helper\TwbBundleFormElement;
 
 class TwbBundleButtonGroup extends AbstractHelper
 {
@@ -48,7 +49,7 @@ class TwbBundleButtonGroup extends AbstractHelper
          * Button group container attributes
          */
         if (empty($aButtonGroupOptions['attributes'])) {
-            $aButtonGroupOptions['attributes'] = array('class' => 'btn-group');
+            $aButtonGroupOptions['attributes'] = ['class' => 'btn-group'];
         } else {
             if (!is_array($aButtonGroupOptions['attributes'])) {
                 throw new LogicException('"attributes" option expects an array, "' . gettype($aButtonGroupOptions['attributes']) . '" given');
@@ -89,10 +90,11 @@ class TwbBundleButtonGroup extends AbstractHelper
                 !($oButton instanceof ElementInterface))
             ) {
                 $oFactory = new Factory();
-                $oButton = $oFactory->create($oButton);
+                $oButton  = $oFactory->create($oButton);
             } elseif (!($oButton instanceof ElementInterface)) {
                 throw new LogicException(sprintf(
-                    'Button expects an instanceof Laminas\Form\ElementInterface or an array / Traversable, "%s" given', is_object($oButton) ? get_class($oButton) : gettype($oButton)
+                    'Button expects an instanceof Laminas\Form\ElementInterface or an array / Traversable, "%s" given',
+                    is_object($oButton) ? get_class($oButton) : gettype($oButton)
                 ));
             }
 

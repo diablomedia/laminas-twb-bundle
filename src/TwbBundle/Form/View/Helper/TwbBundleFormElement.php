@@ -56,16 +56,16 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      *
      * @var array
      */
-    protected $classMap = array(
-        'Laminas\Form\Element\Button' => 'formbutton',
-        'Laminas\Form\Element\Captcha' => 'formcaptcha',
-        'Laminas\Form\Element\Csrf' => 'formhidden',
-        'Laminas\Form\Element\Collection' => 'formcollection',
-        'Laminas\Form\Element\DateTimeSelect' => 'formdatetimeselect',
-        'Laminas\Form\Element\DateSelect' => 'formdateselect',
-        'Laminas\Form\Element\MonthSelect' => 'formmonthselect',
+    protected $classMap = [
+        'Laminas\Form\Element\Button'          => 'formbutton',
+        'Laminas\Form\Element\Captcha'         => 'formcaptcha',
+        'Laminas\Form\Element\Csrf'            => 'formhidden',
+        'Laminas\Form\Element\Collection'      => 'formcollection',
+        'Laminas\Form\Element\DateTimeSelect'  => 'formdatetimeselect',
+        'Laminas\Form\Element\DateSelect'      => 'formdateselect',
+        'Laminas\Form\Element\MonthSelect'     => 'formmonthselect',
         'TwbBundle\Form\Element\StaticElement' => 'formStatic',
-    );
+    ];
 
     public function __construct(ModuleOptions $options)
     {
@@ -143,9 +143,9 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
             throw new InvalidArgumentException('Addon options are empty');
         }
         if ($aAddOnOptions instanceof ElementInterface) {
-            $aAddOnOptions = array('element' => $aAddOnOptions);
+            $aAddOnOptions = ['element' => $aAddOnOptions];
         } elseif (is_scalar($aAddOnOptions)) {
-            $aAddOnOptions = array('text' => $aAddOnOptions);
+            $aAddOnOptions = ['text' => $aAddOnOptions];
         } elseif (!is_array($aAddOnOptions)) {
             throw new InvalidArgumentException(sprintf(
                 'Addon options expects an array or a scalar value, "%s" given',
@@ -153,9 +153,9 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
             ));
         }
 
-        $sMarkup = '';
+        $sMarkup       = '';
         $sAddonTagName = 'span';
-        $sAddonClass = '';
+        $sAddonClass   = '';
         if (!empty($aAddOnOptions['text'])) {
             if (!is_scalar($aAddOnOptions['text'])) {
                 throw new InvalidArgumentException(sprintf(
@@ -173,7 +173,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
                 ($aAddOnOptions['element'] instanceof Traversable &&
                 !($aAddOnOptions['element'] instanceof ElementInterface))
             ) {
-                $oFactory = new Factory();
+                $oFactory                 = new Factory();
                 $aAddOnOptions['element'] = $oFactory->create($aAddOnOptions['element']);
             } elseif (!($aAddOnOptions['element'] instanceof ElementInterface)) {
                 throw new LogicException(sprintf(
@@ -184,7 +184,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
 
             $aAddOnOptions['element']->setOptions(array_merge(
                 $aAddOnOptions['element']->getOptions(),
-                array('disable-twb' => true)
+                ['disable-twb' => true]
             ));
 
             $sMarkup .= $this->render($aAddOnOptions['element']);
