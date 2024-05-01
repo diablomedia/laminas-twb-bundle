@@ -15,6 +15,7 @@ return $config->setRiskyAllowed(true)
         'single_quote'              => true,
         'array_syntax'              => ['syntax' => 'short'],
         'concat_space'              => ['spacing' => 'one'],
+        'no_unused_imports'         => true,
     ])
     ->setUsingCache(true)
     ->setFinder($finder);
