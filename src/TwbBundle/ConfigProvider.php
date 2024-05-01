@@ -40,7 +40,7 @@ class ConfigProvider
         $this->moduleConfig = require self::MODULE_CONFIG_PATH;
 
         return [
-            'twbbundle' => $this->getTwbBundleOptions(),
+            'twbbundle'    => $this->getTwbBundleOptions(),
             'dependencies' => $this->getDependencies(),
             'view_helpers' => $this->getViewHelpers()
         ];

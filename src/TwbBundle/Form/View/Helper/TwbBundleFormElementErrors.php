@@ -5,7 +5,7 @@ use Laminas\Form\View\Helper\FormElementErrors;
 
 class TwbBundleFormElementErrors extends FormElementErrors
 {
-    protected $attributes = array(
+    protected $attributes = [
         'class' => 'help-block'
-    );
+    ];
 }

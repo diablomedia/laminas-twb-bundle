@@ -12,7 +12,7 @@ namespace TwbBundleTest\View\Helper\Navigation;
 
 use TwbBundle\View\Helper\Navigation\TwbBundleMenu;
 
-class TwbBundleMenuTest extends AbstractTest
+class TwbBundleMenuTest extends AbstractTestCase
 {
     // @codingStandardsIgnoreStart
     /**

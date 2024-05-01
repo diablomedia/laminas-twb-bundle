@@ -6,7 +6,8 @@ namespace TwbBundleTest;
  * Test input groups rendering
  * Based on http://getbootstrap.com/components/#input-groups
  */
-class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
+class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase
+{
 
     /**
      * @var string
@@ -21,27 +22,29 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
     /**
      * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp(): void {
-        $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-input-groups' . DIRECTORY_SEPARATOR;
+    public function setUp(): void
+    {
+        $this->expectedPath       = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-input-groups' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
-        $this->formElementHelper = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+        $oRenderer                = new \Laminas\View\Renderer\PhpRenderer();
+        $this->formElementHelper  = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
     /**
      * Test http://getbootstrap.com/components/#input-groups-basic
      */
-    public function testBasicExample() {
+    public function testBasicExample()
+    {
         $sContent = '';
 
-        $oInput = new \Laminas\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
+        $oInput = new \Laminas\Form\Element\Text('input-prepend', ['add-on-prepend' => '@']);
         $oInput->setAttribute('placeholder', 'Username');
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
-        $oInput = new \Laminas\Form\Element\Text('input-append', array('add-on-append' => '.00'));
+        $oInput = new \Laminas\Form\Element\Text('input-append', ['add-on-append' => '.00']);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
-        $oInput = new \Laminas\Form\Element\Text('input-append-prepend', array('add-on-prepend' => '$', 'add-on-append' => '.00'));
+        $oInput = new \Laminas\Form\Element\Text('input-append-prepend', ['add-on-prepend' => '$', 'add-on-append' => '.00']);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
@@ -51,22 +54,23 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
     /**
      * Test http://getbootstrap.com/components/#input-groups-sizing
      */
-    public function testSizing() {
+    public function testSizing()
+    {
         $sContent = '';
 
         //Large
-        $oInput = new \Laminas\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
-        $oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-lg'));
+        $oInput = new \Laminas\Form\Element\Text('input-prepend', ['add-on-prepend' => '@']);
+        $oInput->setAttributes(['placeholder' => 'Username', 'class' => 'input-lg']);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Default
-        $oInput = new \Laminas\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
+        $oInput = new \Laminas\Form\Element\Text('input-prepend', ['add-on-prepend' => '@']);
         $oInput->setAttribute('placeholder', 'Username');
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Small
-        $oInput = new \Laminas\Form\Element\Text('input-prepend', array('add-on-prepend' => '@'));
-        $oInput->setAttributes(array('placeholder' => 'Username', 'class' => 'input-sm'));
+        $oInput = new \Laminas\Form\Element\Text('input-prepend', ['add-on-prepend' => '@']);
+        $oInput->setAttributes(['placeholder' => 'Username', 'class' => 'input-sm']);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
@@ -76,15 +80,16 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
     /**
      * Test http://getbootstrap.com/components/#input-groups-checkboxes-radios
      */
-    public function testCheckboxesAndRadioAddons() {
+    public function testCheckboxesAndRadioAddons()
+    {
         $sContent = '';
 
         //Checkbox
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-prepend' => new \Laminas\Form\Element\Checkbox('checkbox')));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-prepend' => new \Laminas\Form\Element\Checkbox('checkbox')]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Radio
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-prepend' => new \Laminas\Form\Element\Radio('radio', array('value_options' => array(1 => '')))));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-prepend' => new \Laminas\Form\Element\Radio('radio', ['value_options' => [1 => '']])]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
@@ -94,15 +99,16 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
     /**
      * Test http://getbootstrap.com/components/#input-groups-buttons
      */
-    public function testButtonAddons() {
+    public function testButtonAddons()
+    {
         $sContent = '';
 
         //Prepend
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-prepend' => new \Laminas\Form\Element\Button('prepend-button', array('label' => 'Go!'))));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-prepend' => new \Laminas\Form\Element\Button('prepend-button', ['label' => 'Go!'])]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Append
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-append' => new \Laminas\Form\Element\Button('append-button', array('label' => 'Go!'))));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-append' => new \Laminas\Form\Element\Button('append-button', ['label' => 'Go!'])]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
@@ -112,23 +118,24 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
     /**
      * Test http://getbootstrap.com/components/#input-groups-buttons-dropdowns
      */
-    public function testButtonsWithDropdowns() {
-        $aButtonOptions = array('label' => 'Action', 'dropdown' => array(
-                'label' => 'Dropdown',
-                'name' => 'dropdownMenu1',
-                'attributes' => array('class' => 'clearfix'),
-                'list_attributes' => array('aria-labelledby' => 'dropdownMenu1'),
-                'items' => array('Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link')
-        ));
+    public function testButtonsWithDropdowns()
+    {
+        $aButtonOptions = ['label' => 'Action', 'dropdown' => [
+                'label'           => 'Dropdown',
+                'name'            => 'dropdownMenu1',
+                'attributes'      => ['class' => 'clearfix'],
+                'list_attributes' => ['aria-labelledby' => 'dropdownMenu1'],
+                'items'           => ['Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link']
+        ]];
 
         $sContent = '';
 
         //Prepend
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-prepend' => new \Laminas\Form\Element\Button('prepend-button', $aButtonOptions)));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-prepend' => new \Laminas\Form\Element\Button('prepend-button', $aButtonOptions)]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Append
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-append' => new \Laminas\Form\Element\Button('append-button', $aButtonOptions)));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-append' => new \Laminas\Form\Element\Button('append-button', $aButtonOptions)]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
@@ -138,24 +145,25 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
     /**
      * Test http://getbootstrap.com/components/#input-groups-buttons-segmented
      */
-    public function testSegmentedButtons() {
-        $aButtonOptions = array('label' => 'Action', 'dropdown' => array(
-                'label' => 'Dropdown',
-                'name' => 'dropdownMenu1',
-                'split' => true,
-                'attributes' => array('class' => 'clearfix'),
-                'list_attributes' => array('aria-labelledby' => 'dropdownMenu1'),
-                'items' => array('Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link')
-        ));
+    public function testSegmentedButtons()
+    {
+        $aButtonOptions = ['label' => 'Action', 'dropdown' => [
+                'label'           => 'Dropdown',
+                'name'            => 'dropdownMenu1',
+                'split'           => true,
+                'attributes'      => ['class' => 'clearfix'],
+                'list_attributes' => ['aria-labelledby' => 'dropdownMenu1'],
+                'items'           => ['Action', 'Another action', 'Something else here', \TwbBundle\View\Helper\TwbBundleDropDown::TYPE_ITEM_DIVIDER, 'Separated link']
+        ]];
 
         $sContent = '';
 
         //Prepend
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-prepend' => new \Laminas\Form\Element\Button('prepend-button', $aButtonOptions)));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-prepend' => new \Laminas\Form\Element\Button('prepend-button', $aButtonOptions)]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Append
-        $oInput = new \Laminas\Form\Element\Text('input-username', array('add-on-append' => new \Laminas\Form\Element\Button('append-button', $aButtonOptions)));
+        $oInput = new \Laminas\Form\Element\Text('input-username', ['add-on-append' => new \Laminas\Form\Element\Button('append-button', $aButtonOptions)]);
         $sContent .= $this->formElementHelper->__invoke($oInput) . "\n";
 
         //Test content
@@ -169,7 +177,8 @@ class TwbBundleInputGroupsTest extends \PHPUnit\Framework\TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
+    {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 

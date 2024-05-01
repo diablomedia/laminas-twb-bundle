@@ -17,7 +17,7 @@ class ModuleOptions extends AbstractOptions
     
     /**
      * Constructor
-     * 
+     *
      * @param array|\Traversable|null $options
      */
     public function __construct($options = null)
@@ -50,5 +50,5 @@ class ModuleOptions extends AbstractOptions
     public function setTypeMap($typeMap)
     {
         $this->typeMap = $typeMap;
-    }    
+    }
 }

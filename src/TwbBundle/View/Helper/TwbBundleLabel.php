@@ -23,9 +23,9 @@ class TwbBundleLabel extends AbstractHelper
     /**
      * @var array
      */
-    protected $validTagAttributes = array(
+    protected $validTagAttributes = [
         'href' => true,
-    );
+    ];
 
     /**
      * Invoke helper as functor, proxies to {@link render()}.
@@ -60,7 +60,7 @@ class TwbBundleLabel extends AbstractHelper
         }
 
         if (is_string($aLabelAttributes)) {
-            $aLabelAttributes = array('class' => $aLabelAttributes);
+            $aLabelAttributes = ['class' => $aLabelAttributes];
         } elseif (!is_array($aLabelAttributes)) {
             throw new InvalidArgumentException('Label attributes expects a string or an array, "' . gettype($aLabelAttributes) . '" given');
         } elseif (empty($aLabelAttributes['class'])) {

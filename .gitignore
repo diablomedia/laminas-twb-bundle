@@ -9,3 +9,5 @@ nb-configuration.xml
 .idea/
 composer.lock
 .phpunit.result.cache
+.php-cs-fixer.cache
+.phpunit.cache

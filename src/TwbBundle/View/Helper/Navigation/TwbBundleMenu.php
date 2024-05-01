@@ -144,14 +144,14 @@ class TwbBundleMenu extends ZendMenuHelper
         } elseif (!$active['page']->hasPages()) {
             // found pages has no children; render siblings
             $active['page'] = $active['page']->getParent();
-        } elseif (is_int($maxDepth) && $active['depth'] +1 > $maxDepth) {
+        } elseif (is_int($maxDepth) && $active['depth'] + 1 > $maxDepth) {
             // children are below max depth; render siblings
             $active['page'] = $active['page']->getParent();
         }
 
         $ulClass = $ulClass ? ' class="' . $ulClass . '"' : '';
-        $ulId = ($this->getUlId()) ? ' id="' . $this->getUlId() . '"' : '';
-        $html = $indent . '<ul' . $ulId . $ulClass . '>' . PHP_EOL;
+        $ulId    = ($this->getUlId()) ? ' id="' . $this->getUlId() . '"' : '';
+        $html    = $indent . '<ul' . $ulId . $ulClass . '>' . PHP_EOL;
 
         foreach ($active['page'] as $subPage) {
             if (!$this->accept($subPage)) {
@@ -159,7 +159,7 @@ class TwbBundleMenu extends ZendMenuHelper
             }
 
             // render li tag and page
-            $liClasses = array();
+            $liClasses = [];
             // Is page active?
             if ($subPage->isActive(true)) {
                 $liClasses[] = 'active';
@@ -214,12 +214,15 @@ class TwbBundleMenu extends ZendMenuHelper
             $foundPage  = $found['page'];
             $foundDepth = $found['depth'];
         } else {
-            $foundPage = null;
+            $foundPage  = null;
+            $foundDepth = 0;
         }
 
         // create iterator
-        $iterator = new RecursiveIteratorIterator($container,
-            RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new RecursiveIteratorIterator(
+            $container,
+            RecursiveIteratorIterator::SELF_FIRST
+        );
         if (is_int($maxDepth)) {
             $iterator->setMaxDepth($maxDepth);
         }
@@ -227,7 +230,7 @@ class TwbBundleMenu extends ZendMenuHelper
         // iterate container
         $prevDepth = -1;
         foreach ($iterator as $page) {
-            $depth = $iterator->getDepth();
+            $depth    = $iterator->getDepth();
             $isActive = $page->isActive(true);
             if ($depth < $minDepth || !$this->accept($page)) {
                 // page is below minDepth or not accepted by acl/visibility
@@ -261,7 +264,7 @@ class TwbBundleMenu extends ZendMenuHelper
 
             if ($depth > $prevDepth) {
                 // start new ul tag
-                if ($ulClass && $depth ==  0) {
+                if ($ulClass && $depth == 0) {
                     $ulClass = ' class="' . $ulClass . '"';
                 } elseif ($page->getParent()) {
                     $ulClass = ' class="' . $this->getSubUlClass() . '"';
@@ -291,7 +294,7 @@ class TwbBundleMenu extends ZendMenuHelper
             }
 
             // render li tag and page
-            $liClasses = array();
+            $liClasses   = [];
             $liClasses[] = $this->getLiClass();
             // Is page active?
             if ($isActive) {
@@ -299,7 +302,7 @@ class TwbBundleMenu extends ZendMenuHelper
             }
             // Is page parent?
             if ($page->hasPages() && (!isset($maxDepth) || $depth < $maxDepth)) {
-                $liClasses[] = ($depth == 0) ? 'dropdown': 'dropdown-submenu';
+                $liClasses[]      = ($depth == 0) ? 'dropdown': 'dropdown-submenu';
                 $page->isDropdown = true;
 
                 if ($depth > 0) {
@@ -310,7 +313,7 @@ class TwbBundleMenu extends ZendMenuHelper
             if ($addClassToListItem && $page->getClass()) {
                 $liClasses[] = $page->getClass();
             }
-            $liClass = empty($liClasses) ? '' : ' class="' . implode(' ', $liClasses) . '"';
+            $liClass = ' class="' . implode(' ', $liClasses) . '"';
 
             $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
                 . $myIndent . '        ' . $this->htmlify($page, $escapeLabels, $addClassToListItem) . PHP_EOL;
@@ -321,8 +324,8 @@ class TwbBundleMenu extends ZendMenuHelper
 
         if ($html) {
             // done iterating container; close open ul/li tags
-            for ($i = $prevDepth+1; $i > 0; $i--) {
-                $myIndent = $indent . str_repeat('        ', $i-1);
+            for ($i = $prevDepth + 1; $i > 0; $i--) {
+                $myIndent = $indent . str_repeat('        ', $i - 1);
                 $html .= $myIndent . '    </li>' . PHP_EOL
                     . $myIndent . '</ul>' . PHP_EOL;
             }
@@ -361,21 +364,21 @@ class TwbBundleMenu extends ZendMenuHelper
         }
 
         // get attribs for element
-        $element = 'a';
+        $element  = 'a';
         $extended = '';
-        $attribs = array(
+        $attribs  = [
             'id'     => $page->getId(),
             'title'  => $title,
             'href'   => '#',
-        );
+        ];
 
-        $class = array();
+        $class = [];
         if ($addClassToListItem === false) {
             $class[] = $page->getClass();
         }
         if ($page->isDropdown) {
             $attribs['data-toggle'] = 'dropdown';
-            $class[] = 'dropdown-toggle';
+            $class[]                = 'dropdown-toggle';
 
             if (!$page->isSubmenu && $this->getUseCaret()) {
                 $extended = '<span class="caret"></span>';
@@ -388,7 +391,7 @@ class TwbBundleMenu extends ZendMenuHelper
         // does page have a href?
         $href = $page->getHref();
         if ($href) {
-            $attribs['href'] = $href;
+            $attribs['href']   = $href;
             $attribs['target'] = $page->getTarget();
         }
 

@@ -78,13 +78,13 @@ class TwbBundleForm extends Form
     protected function renderElements(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
     {
         // Store button groups
-        $aButtonGroups = array();
+        $aButtonGroups = [];
 
         // Store button groups column-size from buttons
-        $aButtonGroupsColumnSize = array();
+        $aButtonGroupsColumnSize = [];
 
         // Store elements rendering
-        $aElementsRendering = array();
+        $aElementsRendering = [];
 
         // Retrieve view helper plugin manager
         $oHelperPluginManager = $this->getView()->getHelperPluginManager();
@@ -118,8 +118,8 @@ class TwbBundleForm extends Form
                 if (isset($aButtonGroups[$sButtonGroupKey])) {
                     $aButtonGroups[$sButtonGroupKey][] = $oElement;
                 } else {
-                    $aButtonGroups[$sButtonGroupKey] = array($oElement);
-                    $aElementsRendering[$iKey] = $sButtonGroupKey;
+                    $aButtonGroups[$sButtonGroupKey] = [$oElement];
+                    $aElementsRendering[$iKey]       = $sButtonGroupKey;
                 }
                 if (!empty($aOptions['column-size']) && !isset($aButtonGroupsColumnSize[$sButtonGroupKey])) {
                     // Only the first occured column-size will be set, other are ignored.
@@ -140,7 +140,7 @@ class TwbBundleForm extends Form
                 $aButtons = $aButtonGroups[$sElementRendering];
 
                 // Render button group content
-                $options = (isset($aButtonGroupsColumnSize[$sElementRendering])) ? array('attributes' => array('class' => 'col-' . $aButtonGroupsColumnSize[$sElementRendering])) : null;
+                $options = (isset($aButtonGroupsColumnSize[$sElementRendering])) ? ['attributes' => ['class' => 'col-' . $aButtonGroupsColumnSize[$sElementRendering]]] : null;
                 $sFormContent .= $oFormRowHelper->renderElementFormGroup($oButtonGroupHelper($aButtons, $options), $oFormRowHelper->getRowClassFromElement(current($aButtons)));
             } else {
                 $sFormContent .= $sElementRendering;

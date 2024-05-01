@@ -8,9 +8,9 @@ use Laminas\Form\FormInterface;
 class TwbBundleFormErrors extends AbstractHelper
 {
 
-    protected $defaultErrorText = 'There were errors in the form submission';
-    protected $messageOpenFormat = '<h4>%s</h4><ul><li>';
-    protected $messageCloseString = '</li></ul>';
+    protected $defaultErrorText       = 'There were errors in the form submission';
+    protected $messageOpenFormat      = '<h4>%s</h4><ul><li>';
+    protected $messageCloseString     = '</li></ul>';
     protected $messageSeparatorString = '</li><li>';
 
     /**
@@ -47,7 +47,7 @@ class TwbBundleFormErrors extends AbstractHelper
     {
         $errorHtml = sprintf($this->messageOpenFormat, $sMessage);
 
-        $sMessagesArray = array();
+        $sMessagesArray = [];
 
         foreach ($oForm->getMessages() as $fieldName => $sMessages) {
             foreach ($sMessages as $sMessage) {
@@ -79,6 +79,6 @@ class TwbBundleFormErrors extends AbstractHelper
      */
     public function dangerAlert($content, $bDismissable = false)
     {
-        return $this->getView()->alert($content, array('class' => 'alert-danger'), $bDismissable);
+        return $this->getView()->alert($content, ['class' => 'alert-danger'], $bDismissable);
     }
 }

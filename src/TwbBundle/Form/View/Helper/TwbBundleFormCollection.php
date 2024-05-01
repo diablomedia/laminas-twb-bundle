@@ -22,9 +22,9 @@ class TwbBundleFormCollection extends FormCollection
      * Attributes valid for the tag represented by this helper
      * @var array
      */
-    protected $validTagAttributes = array(
+    protected $validTagAttributes = [
         'disabled' => true
-    );
+    ];
 
     /**
      * Render a collection by iterating through all fieldsets and elements
@@ -40,10 +40,10 @@ class TwbBundleFormCollection extends FormCollection
 
         $bShouldWrap = $this->shouldWrap;
 
-        $sMarkup = '';
+        $sMarkup        = '';
         $sElementLayout = $oElement->getOption('twb-layout');
         if ($oElement instanceof \IteratorAggregate) {
-            $oElementHelper = $this->getElementHelper();
+            $oElementHelper  = $this->getElementHelper();
             $oFieldsetHelper = $this->getFieldsetHelper();
 
             foreach ($oElement->getIterator() as $oElementOrFieldset) {
@@ -79,7 +79,9 @@ class TwbBundleFormCollection extends FormCollection
                 }
 
                 $sMarkup = sprintf(
-                        static::$legendFormat, ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
+                    static::$legendFormat,
+                    ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : [])) ? ' ' . $sAttributes : '',
+                    $this->getEscapeHtmlHelper()->__invoke($sLabel)
                 ) . $sMarkup;
             }
 
@@ -96,7 +98,9 @@ class TwbBundleFormCollection extends FormCollection
             }
 
             $sMarkup = sprintf(
-                    static::$fieldsetFormat, ($sAttributes = $this->createAttributesString($oElement->getAttributes())) ? ' ' . $sAttributes : '', $sMarkup
+                static::$fieldsetFormat,
+                ($sAttributes = $this->createAttributesString($oElement->getAttributes())) ? ' ' . $sAttributes : '',
+                $sMarkup
             );
         }
         return $sMarkup;

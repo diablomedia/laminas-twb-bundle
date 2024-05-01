@@ -47,9 +47,9 @@ class TwbBundleDropDown extends AbstractHelper
     /**
      * @var string
      */
-    protected static $dropdownItemFormats = array(
+    protected static $dropdownItemFormats = [
         self::TYPE_ITEM_LINK => '<a %s>%s</a>',
-    );
+    ];
 
     /**
      * @param array $aDropdownOptions
@@ -71,7 +71,7 @@ class TwbBundleDropDown extends AbstractHelper
         // Dropdown container attributes
         if (empty($aDropdownOptions['attributes'])) {
 
-            $aDropdownOptions['attributes'] = array('class' => 'dropdown');
+            $aDropdownOptions['attributes'] = ['class' => 'dropdown'];
         } else {
             if (!is_array($aDropdownOptions['attributes'])) {
                 throw new LogicException('"attributes" option expects an array, "' . gettype($aDropdownOptions['attributes']) . '" given');
@@ -88,9 +88,10 @@ class TwbBundleDropDown extends AbstractHelper
 
         // Render dropdown
         return sprintf(
-                static::$dropdownContainerFormat, $this->createAttributesString($aDropdownOptions['attributes']), //Container attributes
-                $this->renderToggle($aDropdownOptions) . //Toggle
-                $this->renderListItems($aDropdownOptions) //List items
+            static::$dropdownContainerFormat,
+            $this->createAttributesString($aDropdownOptions['attributes']), //Container attributes
+            $this->renderToggle($aDropdownOptions) . //Toggle
+            $this->renderListItems($aDropdownOptions) //List items
         );
     }
 
@@ -113,7 +114,7 @@ class TwbBundleDropDown extends AbstractHelper
 
         // Dropdown toggle attributes (class)
         if (empty($aDropdownOptions['toggle_attributes'])) {
-            $aDropdownOptions['toggle_attributes'] = array('class' => 'sr-only dropdown-toggle');
+            $aDropdownOptions['toggle_attributes'] = ['class' => 'sr-only dropdown-toggle'];
         } else {
             if (!is_array($aDropdownOptions['toggle_attributes'])) {
                 throw new InvalidArgumentException('"toggle_attributes" option expects an array, "' . gettype($aDropdownOptions['toggle_attributes']) . '" given');
@@ -151,14 +152,15 @@ class TwbBundleDropDown extends AbstractHelper
             $aDropdownOptions['toggle_attributes']['id'] = $aDropdownOptions['name'];
         }
 
-        $aValidTagAttributes = $this->validTagAttributes;
-        $this->validTagAttributes = array('href' => true);
-        $sAttributeString = $this->createAttributesString($aDropdownOptions['toggle_attributes']);
+        $aValidTagAttributes      = $this->validTagAttributes;
+        $this->validTagAttributes = ['href' => true];
+        $sAttributeString         = $this->createAttributesString($aDropdownOptions['toggle_attributes']);
         $this->validTagAttributes = $aValidTagAttributes;
 
         return sprintf(
-                static::$dropdownToggleFormat, $sAttributeString, // Toggle attributes
-                $this->getEscapeHtmlHelper()->__invoke($aDropdownOptions['label']) // Toggle label
+            static::$dropdownToggleFormat,
+            $sAttributeString, // Toggle attributes
+            $this->getEscapeHtmlHelper()->__invoke($aDropdownOptions['label']) // Toggle label
         );
     }
 
@@ -180,7 +182,7 @@ class TwbBundleDropDown extends AbstractHelper
 
         // Dropdown list attributes (class)
         if (empty($aDropdownOptions['list_attributes'])) {
-            $aDropdownOptions['list_attributes'] = array('class' => 'dropdown-menu');
+            $aDropdownOptions['list_attributes'] = ['class' => 'dropdown-menu'];
         } else {
             if (!is_array($aDropdownOptions['list_attributes'])) {
                 throw new \LogicException('"list_attributes" option expects an array, "' . gettype($aDropdownOptions['list_attributes']) . '" given');
@@ -212,13 +214,13 @@ class TwbBundleDropDown extends AbstractHelper
                 }
                 $aItemOptions = $aItemOptions === self::TYPE_ITEM_DIVIDER
                         // Divider
-                        ? array('type' => self::TYPE_ITEM_DIVIDER)
+                        ? ['type' => self::TYPE_ITEM_DIVIDER]
                         // Link
-                        : array(
-                    'label' => $aItemOptions,
-                    'type' => self::TYPE_ITEM_LINK,
-                    'item_attributes' => array('href' => is_string($sKey) ? $sKey : null)
-                );
+                        : [
+                    'label'           => $aItemOptions,
+                    'type'            => self::TYPE_ITEM_LINK,
+                    'item_attributes' => ['href' => is_string($sKey) ? $sKey : null]
+                ];
             } else {
                 if (!isset($aItemOptions['label'])) {
                     $aItemOptions['label'] = is_string($sKey) ? $sKey : null;
@@ -232,8 +234,9 @@ class TwbBundleDropDown extends AbstractHelper
         }
 
         return sprintf(
-                static::$dropdownListFormat, $this->createAttributesString($aDropdownOptions['list_attributes']), // List attributes
-                $sItems // Items
+            static::$dropdownListFormat,
+            $this->createAttributesString($aDropdownOptions['list_attributes']), // List attributes
+            $sItems // Items
         );
     }
 
@@ -251,7 +254,7 @@ class TwbBundleDropDown extends AbstractHelper
 
         // Item container attributes
         if (empty($aItemOptions['attributes'])) {
-            $aItemOptions['attributes'] = array();
+            $aItemOptions['attributes'] = [];
         } elseif (!is_array($aItemOptions['attributes'])) {
             throw new \LogicException('"attributes" option expects an array, "' . gettype($aItemOptions['attributes']) . '" given');
         }
@@ -320,9 +323,9 @@ class TwbBundleDropDown extends AbstractHelper
                     $aItemOptions['item_attributes']['href'] = '#';
                 }
 
-                $aValidTagAttributes = $this->validTagAttributes;
-                $this->validTagAttributes = array('href' => true);
-                $sAttributeString = $this->createAttributesString($aItemOptions['item_attributes']);
+                $aValidTagAttributes      = $this->validTagAttributes;
+                $this->validTagAttributes = ['href' => true];
+                $sAttributeString         = $this->createAttributesString($aItemOptions['item_attributes']);
                 $this->validTagAttributes = $aValidTagAttributes;
 
                 $sItemContent = sprintf(static::$dropdownItemFormats[self::TYPE_ITEM_LINK], $sAttributeString, $this->getEscapeHtmlHelper()->__invoke($aItemOptions['label']));

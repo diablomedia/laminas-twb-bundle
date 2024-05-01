@@ -43,7 +43,7 @@ class TwbBundleBadge extends AbstractHelper
         }
 
         if (empty($aBadgeAttributes)) {
-            $aBadgeAttributes = array('class' => 'badge');
+            $aBadgeAttributes = ['class' => 'badge'];
         } else {
             if (empty($aBadgeAttributes['class'])) {
                 $aBadgeAttributes['class'] = 'badge';

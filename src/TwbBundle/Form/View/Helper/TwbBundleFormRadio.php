@@ -40,7 +40,7 @@ class TwbBundleFormRadio extends FormRadio
         if (isset($aElementOptions['inline']) && $aElementOptions['inline'] == true) {
             $sSeparator = $this->getSeparator();
             $this->setSeparator('');
-            $oElement->setLabelAttributes(array('class' => 'radio-inline'));
+            $oElement->setLabelAttributes(['class' => 'radio-inline']);
             $sReturn = sprintf('%s', parent::render($oElement));
             $this->setSeparator($sSeparator);
             return $sReturn;
@@ -54,7 +54,7 @@ class TwbBundleFormRadio extends FormRadio
             }
 
             $this->setSeparator('');
-            $oElement->setLabelAttributes(array('class' => $buttonClass));
+            $oElement->setLabelAttributes(['class' => $buttonClass]);
 
             return sprintf('<div class="btn-group" data-toggle="buttons">%s</div>', parent::render($oElement));
         }
@@ -76,14 +76,14 @@ class TwbBundleFormRadio extends FormRadio
         array $aSelectedOptions,
         array $aAttributes
     ): string {
-        $iIterator = 0;
+        $iIterator              = 0;
         $aGlobalLabelAttributes = $oElement->getLabelAttributes()? : $this->labelAttributes;
-        $sMarkup = '';
-        $oLabelHelper = $this->getLabelHelper();
-        $aElementOptions = $oElement->getOptions();
+        $sMarkup                = '';
+        $oLabelHelper           = $this->getLabelHelper();
+        $aElementOptions        = $oElement->getOptions();
         foreach ($aOptions as $key => $aOptionspec) {
             if (is_scalar($aOptionspec)) {
-                $aOptionspec = array('label' => $aOptionspec, 'value' => $key);
+                $aOptionspec = ['label' => $aOptionspec, 'value' => $key];
             }
 
             $iIterator++;

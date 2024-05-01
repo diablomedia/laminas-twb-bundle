@@ -40,7 +40,7 @@ class TwbBundleFormButton extends FormButton
      * Allowed button options
      * @var array
      */
-    protected static $buttonOptions = array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link');
+    protected static $buttonOptions = ['default', 'primary', 'success', 'info', 'warning', 'danger', 'link'];
 
     /**
      * @see FormButton::render()
@@ -111,7 +111,7 @@ class TwbBundleFormButton extends FormButton
 
         if (!$oElement instanceof LabelAwareInterface || !$oElement->getLabelOption('disable_html_escape')) {
             $oEscapeHtmlHelper = $this->getEscapeHtmlHelper();
-            $sButtonContent = $oEscapeHtmlHelper($sButtonContent);
+            $sButtonContent    = $oEscapeHtmlHelper($sButtonContent);
         }
 
         /*
@@ -119,10 +119,10 @@ class TwbBundleFormButton extends FormButton
          */
         if ($aIconOptions) {
             if (is_scalar($aIconOptions)) {
-                $aIconOptions = array (
-                    'icon' => $aIconOptions,
+                $aIconOptions =  [
+                    'icon'     => $aIconOptions,
                     'position' => self::ICON_PREPEND
-                );
+                ];
             }
 
             if (!is_array($aIconOptions)) {
@@ -137,6 +137,8 @@ class TwbBundleFormButton extends FormButton
             if (!empty($aIconOptions['position'])) {
                 $position = $aIconOptions['position'];
             }
+
+            $icon = null;
 
             if (!empty($aIconOptions['icon'])) {
                 $icon = $aIconOptions['icon'];
@@ -154,8 +156,14 @@ class TwbBundleFormButton extends FormButton
                 ));
             } elseif ($position !== self::ICON_PREPEND && $position !== self::ICON_APPEND) {
                 throw new LogicException(sprintf(
-                    'Glyphicon and fontAwesome "position" option allows "'.self::ICON_PREPEND.'" or "'.self::ICON_APPEND.'", "%s" given',
+                    'Glyphicon and fontAwesome "position" option allows "' . self::ICON_PREPEND . '" or "' . self::ICON_APPEND . '", "%s" given',
                     is_object($position) ? get_class($position) : gettype($position)
+                ));
+            }
+
+            if (!isset($sIconHelperMethod)) {
+                throw new LogicException(sprintf(
+                    'Button has an icon option, but no icon helper found'
                 ));
             }
 
@@ -164,7 +172,7 @@ class TwbBundleFormButton extends FormButton
                     $sButtonContent = $this->getView()->{$sIconHelperMethod}(
                         $icon,
                         isset($aIconOptions['attributes'])?$aIconOptions['attributes']:null
-                    ).' '.$sButtonContent;
+                    ) . ' ' . $sButtonContent;
                 } else {
                     $sButtonContent .= ' ' . $this->getView()->{$sIconHelperMethod}(
                         $icon,
