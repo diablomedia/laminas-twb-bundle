@@ -42,7 +42,7 @@
         "psr/container": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "3.54.0",
+        "friendsofphp/php-cs-fixer": "3.56.0",
         "laminas/laminas-router": "^3.3",
         "maglnet/composer-require-checker": "^3.0.0 || ^4.0.0",
         "phpro/grumphp-shim": "^2.0.0",
