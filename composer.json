@@ -46,7 +46,7 @@
         "laminas/laminas-router": "^3.3",
         "maglnet/composer-require-checker": "^3.0.0 || ^4.0.0",
         "phpro/grumphp-shim": "^2.0.0",
-        "phpstan/phpstan": "1.10.67",
+        "phpstan/phpstan": "1.11.3",
         "phpunit/phpunit": "^10.5.18"
     },
     "autoload": {
