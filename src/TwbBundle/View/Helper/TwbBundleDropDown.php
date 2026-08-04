@@ -55,7 +55,7 @@ class TwbBundleDropDown extends AbstractHelper
      * @param array $aDropdownOptions
      * @return TwbBundleDropDown|string
      */
-    public function __invoke(array $aDropdownOptions = null)
+    public function __invoke(?array $aDropdownOptions = null)
     {
         return $aDropdownOptions ? $this->render($aDropdownOptions) : $this;
     }

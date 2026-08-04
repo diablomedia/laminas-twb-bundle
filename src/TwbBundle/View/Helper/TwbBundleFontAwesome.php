@@ -21,7 +21,7 @@ class TwbBundleFontAwesome extends AbstractHelper
      * @param array $aFontAwesomeAttributes : [optionnal]
      * @return string|TwbBundleFontAwesome
      */
-    public function __invoke($sFontAwesome = null, array $aFontAwesomeAttributes = null)
+    public function __invoke($sFontAwesome = null, ?array $aFontAwesomeAttributes = null)
     {
         if (!$sFontAwesome) {
             return $this;
@@ -36,7 +36,7 @@ class TwbBundleFontAwesome extends AbstractHelper
      * @throws InvalidArgumentException
      * @return string
      */
-    public function render($sFontAwesome, array $aFontAwesomeAttributes = null)
+    public function render($sFontAwesome, ?array $aFontAwesomeAttributes = null)
     {
         if (!is_scalar($sFontAwesome)) {
             throw new \InvalidArgumentException(

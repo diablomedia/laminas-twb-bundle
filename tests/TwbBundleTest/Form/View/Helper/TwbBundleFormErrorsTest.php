@@ -21,7 +21,7 @@ class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase
      * @param \TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper
      * @return \TwbBundleTest\Form\View\Helper\TwbBundleFormErrorsTest
      */
-    public function setFormErrorsHelper(\TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper = null)
+    public function setFormErrorsHelper(?\TwbBundle\Form\View\Helper\TwbBundleFormErrors $oFormErrorsHelper = null)
     {
         $this->formErrorsHelper = $oFormErrorsHelper;
         return $this;

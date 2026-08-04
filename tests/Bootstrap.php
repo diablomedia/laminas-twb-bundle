@@ -5,7 +5,7 @@ namespace TwbBundleTest;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Mvc\Service;
 
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
 chdir(__DIR__);
 
 class Bootstrap

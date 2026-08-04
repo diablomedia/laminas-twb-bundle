@@ -57,7 +57,7 @@
     "scripts": {
         "test": "phpunit",
         "test-with-coverage": "phpunit --coverage-clover=clover.xml",
-        "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi",
+        "phpstan": "phpstan analyze -c phpstan.neon --no-progress --ansi --memory-limit=1G",
         "style-check": "php-cs-fixer fix --dry-run -vv"
     },
     "extra": {
