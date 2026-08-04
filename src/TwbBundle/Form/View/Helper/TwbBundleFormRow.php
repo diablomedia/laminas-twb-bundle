@@ -125,7 +125,7 @@ class TwbBundleFormRow extends FormRow
         if ($oElement->getMessages()) {
             $sRowClass .= ' has-error';
         }
-        if($oElement->getOption('feedback')) {
+        if ($oElement->getOption('feedback')) {
             $sRowClass .= ' has-feedback';
         }
 
@@ -133,7 +133,9 @@ class TwbBundleFormRow extends FormRow
         if (($sColumSize = $oElement->getOption('column-size')) && $oElement->getOption('twb-layout') !== TwbBundleForm::LAYOUT_HORIZONTAL
         ) {
             $sColumSize = (is_array($sColumSize)) ? $sColumSize : [$sColumSize];
-            $sRowClass .= implode('', array_map(function ($item) { return ' col-' . $item; }, $sColumSize));
+            $sRowClass .= implode('', array_map(function ($item) {
+                return ' col-' . $item;
+            }, $sColumSize));
         }
 
         //Additional row class
@@ -162,7 +164,7 @@ class TwbBundleFormRow extends FormRow
         if ($sFeedbackElement && !is_string($sFeedbackElement)) {
             throw new \InvalidArgumentException('Argument "$sFeedbackElement" expects a string, "' . (is_object($sFeedbackElement) ? get_class($sFeedbackElement) : gettype($sFeedbackElement)) . '" given');
         }
-        if($sFeedbackElement) {
+        if ($sFeedbackElement) {
             $sElementContent .= '<i class="' . $sFeedbackElement . ' form-control-feedback"></i>';
         }
         return sprintf(static::$formGroupFormat, $sRowClass, $sElementContent) . "\n";

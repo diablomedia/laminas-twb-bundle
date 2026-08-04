@@ -8,6 +8,7 @@ $finder = PhpCsFixer\Finder::create()
 
 $config = new PhpCsFixer\Config();
 return $config->setRiskyAllowed(true)
+    ->setUnsupportedPhpVersionAllowed(true)
     ->setRules([
         '@PSR2'                     => true,
         '@PHPUnit60Migration:risky' => true,
