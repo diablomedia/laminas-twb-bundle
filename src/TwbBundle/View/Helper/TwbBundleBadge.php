@@ -18,7 +18,7 @@ class TwbBundleBadge extends AbstractHelper
      * @param array $aBadgeAttributes : [optionnal]
      * @return string|TwbBundleBadge
      */
-    public function __invoke($sBadgeMessage = null, array $aBadgeAttributes = null)
+    public function __invoke($sBadgeMessage = null, ?array $aBadgeAttributes = null)
     {
         if ($sBadgeMessage === null) {
             return $this;
@@ -33,7 +33,7 @@ class TwbBundleBadge extends AbstractHelper
      * @throws InvalidArgumentException
      * @return string
      */
-    public function render($sBadgeMessage, array $aBadgeAttributes = null)
+    public function render($sBadgeMessage, ?array $aBadgeAttributes = null)
     {
         if (!is_scalar($sBadgeMessage)) {
             throw new InvalidArgumentException(sprintf(

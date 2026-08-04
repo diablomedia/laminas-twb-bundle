@@ -20,7 +20,7 @@ class TwbBundleFormErrors extends AbstractHelper
      * @param string $bDismissable
      * @return string|null
      */
-    public function __invoke(FormInterface $oForm = null, $sMessage = null, $bDismissable = false)
+    public function __invoke(?FormInterface $oForm = null, $sMessage = null, $bDismissable = false)
     {
         if (!$oForm) {
             return $this;

@@ -31,7 +31,7 @@ class TwbBundleButtonGroup extends AbstractHelper
      * @param array $aButtonGroupOptions
      * @return TwbBundleButtonGroup|string
      */
-    public function __invoke(array $aButtons = null, array $aButtonGroupOptions = null)
+    public function __invoke(?array $aButtons = null, ?array $aButtonGroupOptions = null)
     {
         return $aButtons ? $this->render($aButtons, $aButtonGroupOptions) : $this;
     }
@@ -43,7 +43,7 @@ class TwbBundleButtonGroup extends AbstractHelper
      * @throws LogicException
      * @return string
      */
-    public function render(array $aButtons, array $aButtonGroupOptions = null)
+    public function render(array $aButtons, ?array $aButtonGroupOptions = null)
     {
         /*
          * Button group container attributes
