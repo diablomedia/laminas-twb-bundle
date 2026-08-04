@@ -58,7 +58,7 @@ class TwbBundleFormCheckbox extends FormCheckbox
         // Render label
         $sLabelOpen    = $sLabelClose = '';
         $sLabelContent = $this->getLabelContent($oElement);
-        if($sLabelContent) {
+        if ($sLabelContent) {
             $oLabelHelper = $this->getLabelHelper();
             $sLabelOpen   = $oLabelHelper->openTag($oElement->getLabelAttributes() ? : null);
             $sLabelClose  = $oLabelHelper->closeTag();
