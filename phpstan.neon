@@ -1,5 +1,13 @@
 parameters:
     level: 1
+    # This package intentionally extends Laminas view helpers. Laminas marks
+    # these extension points as soft-final in PHPDoc, but they are not final
+    # native PHP classes and replacing inheritance would break our public API.
+    ignoreErrors:
+        -
+            identifier: class.extendsFinalByPhpDoc
+        -
+            identifier: property.parentPropertyFinalByPhpDoc
     paths:
         - ./
     excludePaths:

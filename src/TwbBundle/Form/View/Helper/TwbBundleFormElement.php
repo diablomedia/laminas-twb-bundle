@@ -208,7 +208,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      * @param string $sTextDomain : [optional] text domain Default is null, which skips setTranslatorTextDomain
      * @return TwbBundleFormElement
      */
-    public function setTranslator(TranslatorInterface $oTranslator = null, $sTextDomain = null)
+    public function setTranslator(?TranslatorInterface $oTranslator = null, $sTextDomain = null)
     {
         $this->translator = $oTranslator;
         if (null !== $sTextDomain) {

@@ -18,7 +18,7 @@ class TwbBundleGlyphicon extends AbstractHelper
      * @param array $aGlyphiconAttributes : [optionnal]
      * @return string|TwbBundleGlyphicon
      */
-    public function __invoke($sGlyphicon = null, array $aGlyphiconAttributes = null)
+    public function __invoke($sGlyphicon = null, ?array $aGlyphiconAttributes = null)
     {
         if (!$sGlyphicon) {
             return $this;
@@ -33,7 +33,7 @@ class TwbBundleGlyphicon extends AbstractHelper
      * @throws InvalidArgumentException
      * @return string
      */
-    public function render($sGlyphicon, array $aGlyphiconAttributes = null)
+    public function render($sGlyphicon, ?array $aGlyphiconAttributes = null)
     {
         if (!is_scalar($sGlyphicon)) {
             throw new InvalidArgumentException('Glyphicon expects a scalar value, "' . gettype($sGlyphicon) . '" given');

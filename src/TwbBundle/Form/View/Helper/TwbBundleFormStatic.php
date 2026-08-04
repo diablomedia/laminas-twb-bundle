@@ -19,7 +19,7 @@ class TwbBundleFormStatic extends AbstractHelper
      * @param  ElementInterface|null $element
      * @return string|TwbBundleFormStatic
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (!$element) {
             return $this;

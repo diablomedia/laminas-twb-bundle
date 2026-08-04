@@ -77,6 +77,8 @@ class TwbBundleFormButton extends FormButton
         }
 
         // Retrieve icon options
+        $aIconOptions      = null;
+        $sIconHelperMethod = null;
         if (null !== ($aIconOptions = $oElement->getOption('glyphicon'))) {
             $sIconHelperMethod = 'glyphicon';
         } elseif (null !== ($aIconOptions = $oElement->getOption('fontAwesome'))) {
@@ -161,7 +163,7 @@ class TwbBundleFormButton extends FormButton
                 ));
             }
 
-            if (!isset($sIconHelperMethod)) {
+            if ($sIconHelperMethod === null) {
                 throw new LogicException(sprintf(
                     'Button has an icon option, but no icon helper found'
                 ));

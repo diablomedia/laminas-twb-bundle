@@ -13,7 +13,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
  */
 class TwbBundleFormElementFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         $options = $container->get('TwbBundle\Options\ModuleOptions');
         return new TwbBundleFormElement($options);

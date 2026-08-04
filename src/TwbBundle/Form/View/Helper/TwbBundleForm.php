@@ -37,7 +37,7 @@ class TwbBundleForm extends Form
      * @param string $sFormLayout
      * @return TwbBundleForm|string
      */
-    public function __invoke(FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    public function __invoke(?FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL)
     {
         if ($oForm) {
             return $this->render($oForm, $sFormLayout);
@@ -179,7 +179,7 @@ class TwbBundleForm extends Form
      * @param null|FormInterface $form
      * @return string
      */
-    public function openTag(FormInterface $form = null): string
+    public function openTag(?FormInterface $form = null): string
     {
         $this->setFormClass($form, $this->formLayout);
         return parent::openTag($form);
