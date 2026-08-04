@@ -30,7 +30,7 @@
         "twitter/bootstrap": "Twitter bootstrap assets"
     },
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
         "laminas/laminas-form": "^3.24",
         "laminas/laminas-i18n": "^2.3",
         "laminas/laminas-modulemanager": "^2.3",
